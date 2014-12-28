@@ -3,21 +3,22 @@
 #Author: Andrei Palade (andrey.palade at googlemail doc com)
 #Date: 28.12.2014
 
+#Make sure these are initialised correctly 
 TOKEN=""
 RECORD_ID=""
 DOMAIN_NAME=""
 
-echo "Retrieve current WAN IP..."
+echo "Retrieve new WAN IP..."
 NIP=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 
-echo "Retrieve past WAN IP..."
+echo "Retrieve current WAN IP..."
 if [ ! -f $PWD/cip.txt ]; then
    CIP="0.0.0.0"
 else
    CIP=$(cat $PWD/cip.txt)
 fi
 
-echo "Compare past WAN IP and with current WAN IP..."
+echo "Compare new WAN IP and with current WAN IP..."
 if [ "$NIP" != "$CIP" ]; then
    echo "Setting the new WAN IP..."
    if [ -f $PWD/cip.txt ]; then
