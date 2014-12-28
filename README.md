@@ -3,7 +3,7 @@
 
 ## Purpose
 
-Dynamically updates an 'A' record on Digital Oceans domain server. 
+Dynamically updates an 'A' record on Digital Oceans domain server. This script is useful in case of a sticky IP.
 
 ## Usage
 
