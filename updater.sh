@@ -8,19 +8,18 @@ TOKEN=""
 RECORD_ID=""
 DOMAIN_NAME=""
 
-echo "Retrieve new WAN IP..."
+#Retrieve new WAN IP
 NIP=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 
-echo "Retrieve current WAN IP..."
+#Retrieve current WAN IP
 if [ ! -f $PWD/cip.txt ]; then
    CIP="0.0.0.0"
 else
    CIP=$(cat $PWD/cip.txt)
 fi
 
-echo "Compare new WAN IP and with current WAN IP..."
+#Compare new WAN IP and with current WAN IP
 if [ "$NIP" != "$CIP" ]; then
-   echo "Setting the new WAN IP..."
    if [ -f $PWD/cip.txt ]; then
       rm $PWD/cip.txt
    fi
