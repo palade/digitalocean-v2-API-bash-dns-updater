@@ -13,7 +13,7 @@ Dynamically updates an 'A' record on Digital Oceans domain server.
     RECORD_ID=""
     DOMAIN_NAME=""
     ```
-2. Save the file and in the terminal you might need to do ``chmod 700 updater``
+2. Save the file and in the terminal you might need to do ``chmod 700 updater.sh`` to be able to execute the script.
 3. Add this script to your crontab, if you want to run periodically. See the section on Cron.
 
 ### Cron
