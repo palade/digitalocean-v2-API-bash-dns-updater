@@ -1,9 +1,9 @@
-# digitalocean-dynamic-dns-updater
+# Dynamic DNS Updater for Digital Ocean using API version 2.
 
 
 ## Purpose
 
-Dynamically updates an 'A' record on Digital Oceans domain server. This script is useful in case of a sticky IP.
+Bash script which dynamically updates an 'A' record on Digital Oceans domain server. This script is useful in case of a sticky IP. This script uses Digital Ocean's version 2 API.
 
 ## Usage
 
