@@ -7,14 +7,14 @@ Bash script which dynamically updates an 'A' record on Digital Oceans domain ser
 
 ## Usage
 
-1. Open the script and set the following parameters:
+1. Download and Open the ``updater.sh`` and set the following parameters:
     ```
     TOKEN=""
     RECORD_ID=""
     DOMAIN_NAME=""
     ```
-2. Save the file and in the terminal you might need to do ``chmod 700 updater.sh`` to be able to execute the script.
-3. Add this script to your crontab, if you want to run periodically. See the section on Cron.
+2. In the terminal set the following permissions ``chmod 700 updater.sh`` to be able to execute the script.
+3. Add this script to cron, if you want to run periodically. See the section on Cron.
 
 ### Cron
 
