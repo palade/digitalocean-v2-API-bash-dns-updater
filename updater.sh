@@ -1,34 +1,27 @@
 #!/bin/bash
-#Description: Dynamically updates an 'A' record on Digital Oceans domain server.
-#Author: Andrei Palade (andrey.palade at googlemail doc com)
+#Description: Dynamically updates an A record on Digital Oceans domain server.
+#Author: Andrei Palade (andrey.palade at googlemail dot com)
 #Date: 28.12.2014
 
-#Make sure these are initialised correctly 
 TOKEN=""
 RECORD_ID=""
 DOMAIN_NAME=""
 
-echo "Retrieve new WAN IP..."
+#Retrieve current WAN IP
 NIP=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+echo [$(date +"%d-%m-%Y-%T")] "CURRENT WAN IP: " $NIP  >> updates.txt
 
-echo "Retrieve current WAN IP..."
-if [ ! -f $PWD/cip.txt ]; then
-   CIP="0.0.0.0"
-else
-   CIP=$(cat $PWD/cip.txt)
-fi
+#Retrieve past WAN IP
+CIP=$(curl -X GET -H 'Content-Type: application/json' -H 'Authorization: Bearer '$TOKEN'' "https://api.digitalocean.com/v2/domains/"$DOMAIN_NAME"/records/"$RECORD_ID"" | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["domain_record"]["data"]')
+echo [$(date +"%d-%m-%Y-%T")] "DO WAN IP: " $CIP  >> updates.txt
 
-echo "Compare new WAN IP and with current WAN IP..."
+
+#Compare past WAN IP and with current WAN IP
 if [ "$NIP" != "$CIP" ]; then
-   echo "Setting the new WAN IP..."
-   if [ -f $PWD/cip.txt ]; then
-      rm $PWD/cip.txt
-   fi
-   echo $NIP > cip.txt
    curl -X PUT -H 'Content-Type: application/json' -H 'Authorization: Bearer '$TOKEN'' -d '{"data":"'"$NIP"'"}' "https://api.digitalocean.com/v2/domains/"$DOMAIN_NAME"/records/"$RECORD_ID
+   echo [$(date +"%d-%m-%Y-%T")] "UPDATING WAN IP TO: " $NIP  >> updates.txt
 else
-   echo "No changes in WAN IP!"
+   echo [$(date +"%d-%m-%Y-%T")] "NO CHANGES IN WAN: "$NIP" - "$CIP  >> updates.txt
 fi
 
-echo
-echo "Done!"
+
