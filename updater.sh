@@ -1,7 +1,7 @@
 #!/bin/bash
 #Description: Dynamically updates an A record on Digital Oceans domain server.
 #Author: Andrei Palade (andrey.palade at googlemail dot com)
-#Date: 28.12.2014
+#Date: 08.02.2015
 
 TOKEN=""
 RECORD_ID=""
