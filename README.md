@@ -7,6 +7,8 @@ Bash script which dynamically updates an 'A' record on Digital Oceans domain ser
 
 ## Usage
 
+Before we proceed, make sure ``python'' is installed.
+
 1. Download and Open the ``updater.sh`` and set the following parameters:
     ```
     TOKEN=""
